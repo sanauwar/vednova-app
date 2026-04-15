@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FreeConsultationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+Route::post('/free-consultation', [FreeConsultationController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

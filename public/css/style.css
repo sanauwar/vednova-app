@@ -1675,7 +1675,10 @@ footer ul li a:hover {
     grid-template-columns: 1fr 1fr;
     gap: 14px;
 }
-
+.error {
+    color: white;
+    font-size: 18px;
+}
 /* ANIMATIONS */
 @keyframes fuA {
     from {
