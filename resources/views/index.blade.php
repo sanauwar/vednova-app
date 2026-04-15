@@ -8,6 +8,8 @@
     <title>VedNova Consultancy | Elite MT5 Bots & Signals — Dubai</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Rajdhani:wght@400;500;600;700&family=Space" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -1031,27 +1033,25 @@
                 <button class="btn btn-g" onclick="openModal('Free Consultation')">Book Free Consultation</button>
                 <a href="https://wa.me/971000000000" class="btn btn-o" target="_blank">💬 WhatsApp Us</a>
             </div>
-            <form id="consultationForm">
-                @csrf
-                <div class="rev" style="display:flex;justify-content:center;gap:36px;margin-top:44px;flex-wrap:wrap;">
-                    <div style="text-align:center;">
-                        <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">📧 EMAIL</div>
-                        <div style="font-size:13px;color:var(--gold);margin-top:3px;">info@vednova.ae</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">📱 WHATSAPP</div>
-                        <div style="font-size:13px;color:var(--gold);margin-top:3px;">+971 50 000 0000</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">🏢 OFFICE</div>
-                        <div style="font-size:13px;color:var(--gold);margin-top:3px;">DIFC, Dubai, UAE</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">⏰ HOURS</div>
-                        <div style="font-size:13px;color:var(--gold);margin-top:3px;">Mon–Fri 9AM–6PM GST</div>
-                    </div>
+            <div class="rev" style="display:flex;justify-content:center;gap:36px;margin-top:44px;flex-wrap:wrap;">
+                <div style="text-align:center;">
+                    <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">📧 EMAIL</div>
+                    <div style="font-size:13px;color:var(--gold);margin-top:3px;">info@vednova.ae</div>
                 </div>
-            </form>
+                <div style="text-align:center;">
+                    <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">📱 WHATSAPP</div>
+                    <div style="font-size:13px;color:var(--gold);margin-top:3px;">+971 50 000 0000</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">🏢 OFFICE</div>
+                    <div style="font-size:13px;color:var(--gold);margin-top:3px;">DIFC, Dubai, UAE</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:10px;letter-spacing:2px;color:var(--mut);">⏰ HOURS</div>
+                    <div style="font-size:13px;color:var(--gold);margin-top:3px;">Mon–Fri 9AM–6PM GST</div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1111,34 +1111,56 @@
         <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,168,76,0.05);font-size:10px;color:rgba(138,132,116,0.4);line-height:1.6;text-align:center;">RISK WARNING: Trading forex and CFDs carries a high level of risk. Past performance is not indicative of future results. VedNova Consultancy LLC does not provide investment advice.</div>
     </footer>
 
-    <!-- MODAL -->
+    <!--Consultant MODAL -->
     <div class="ovl" id="ovl" onclick="closeOut(event)">
         <div class="modal">
             <button class="mclose" onclick="closeModal()">✕</button>
             <div class="mtit" id="mtit">Enquiry</div>
             <div class="msub">Fill in your details and our Dubai team will contact you within 2 hours.</div>
-            <div class="frow">
-                <div class="fg2"><label>First Name</label><input type="text" placeholder="Ahmed" /></div>
-                <div class="fg2"><label>Last Name</label><input type="text" placeholder="Al Rashid" /></div>
-            </div>
-            <div class="fg2"><label>Email Address</label><input type="email" placeholder="info@vednovaconsultancy.com" /></div>
-            <div class="fg2"><label>WhatsApp / Phone</label><input type="tel" placeholder="+971 58 122 3964" /></div>
-            <div class="fg2"><label>Country</label><select>
-                    <option>United Arab Emirates</option>
-                    <option>Saudi Arabia</option>
-                    <option>United Kingdom</option>
-                    <option>United States</option>
-                    <option>India</option>
-                    <option>Singapore</option>
-                    <option>Other</option>
-                </select></div>
-            <div class="fg2"><label>Interest</label><select>
-                    <option>MT5 Expert Advisor</option>
-                    <option>Forex Signals</option>
-                    <option>Managed Investment</option>
-                    <option>Free Consultation</option>
-                </select></div>
-            <button class="btn btn-g" style="width:100%;margin-top:6px;" onclick="submitForm()">Submit Enquiry →</button>
+            <form id="consultationForm" onsubmit="return submitForm()">
+                @csrf
+                <div class="frow">
+                    <div class="fg2">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" placeholder="Ahmed" required />
+                    </div>
+                    <div class="fg2">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" placeholder="Al Rashid" required />
+                    </div>
+                </div>
+                <div class="fg2">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="info@vednovaconsultancy.com" required />
+                </div>
+                <div class="fg2">
+                    <label>WhatsApp / Phone</label>
+                    <input type="tel" name="phone" placeholder="+971 58 122 3964" required />
+                </div>
+                <div class="fg2"><label>Country</label>
+                    <select name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="UAE">United Arab Emirates</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="US">United States</option>
+                        <option value="IN">India</option>
+                        <option value="SG">Singapore</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+                <div class="fg2">
+                    <label>Interest</label>
+                    <select name="interest">
+                        <option value="">Select an option</option>
+                        <option value="MT5">MT5 Expert Advisor</option>
+                        <option value="FOREX">Forex Signals</option>
+                        <option value="MANAGED">Managed Investment</option>
+                        <option value="CONSULTATION">Free Consultation</option>
+                    </select>
+                </div>
+                <button class="btn btn-g" style="width:100%;margin-top:6px;" type="submit">Submit Enquiry →</button>
+            </form>
             <div style="text-align:center;font-size:10px;color:var(--mut);margin-top:10px;">🔒 Your data is safe and never shared.</div>
         </div>
     </div>
@@ -1167,8 +1189,41 @@
         }
 
         function submitForm() {
-            alert('Thank you! Our Dubai team will reach out within 2 hours.');
-            closeModal();
+            // e.preventDefault();
+
+            let form = $('#consultationForm')[0]; // ✅ convert to DOM
+            let formData = new FormData(form);
+
+            $('.error').text('');
+
+            $.ajax({
+                url: '/free-consultation',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+
+                success: function(response) {
+                    alert('Thank you! Our Dubai team will reach out within 2 hours.');
+                    form.reset();
+                    closeModal();
+                },
+
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+
+                        $.each(errors, function(key, value) {
+                            $('#error_' + key).text(value[0]);
+                        });
+                    } else {
+                        alert('Something went wrong');
+                    }
+                }
+            });
 
         }
         var revEls = document.querySelectorAll('.rev');
@@ -1215,7 +1270,7 @@
         });
     </script>
     <script src="https://c.mql5.com/js/widgets/quotes/widget.js?v=3"></script>
-    <script>
+    <!-- <script>
         new QuotesWidget({
             type: "ticker",
             filter: ["EURUSD", "USDJPY", "GBPUSD", "AUDUSD", "USDCAD", "XAUUSD", "US30", "NAS100"],
@@ -1224,7 +1279,7 @@
             id: "quotesWidgetTicker",
             fw: "html"
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

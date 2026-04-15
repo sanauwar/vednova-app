@@ -12,6 +12,7 @@ class FreeConsultation extends Model
         'email',
         'phone',
         'country',
-        'interest'
+        'interest',
+        'ip_address'
     ];
 }
