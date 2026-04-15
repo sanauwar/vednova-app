@@ -1,0 +1,2 @@
+# vednova-app
+Trading APp
